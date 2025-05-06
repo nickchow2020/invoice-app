@@ -194,13 +194,8 @@ export function InvoiceDetail() {
         const { name, value } = e.target;
         setCurrentInvoice((prev) => {
             return {
-                ...prev,
+                ...prev!,
                 [name]: value,
-                maintenanceTitle: prev?.maintenanceTitle || "",
-                quantity: prev?.quantity || "",
-                unitPrice: prev?.unitPrice || "",
-                totalAmount: prev?.totalAmount || "",
-                remarks: prev?.remarks || "",
             };
         });
     };
