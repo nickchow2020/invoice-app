@@ -1,7 +1,6 @@
 "use client";
 
 import {
-    ColumnDef,
     createColumnHelper,
     flexRender,
     getCoreRowModel,
@@ -87,7 +86,7 @@ export function InvoiceDetail() {
         setEditMode(true);
     };
 
-    const columns: ColumnDef<Invoice, any>[] = [
+    const columns = [
         columnHelper.accessor("id", {
             header: "序号",
             cell: ({ row }) => row.index + 1,

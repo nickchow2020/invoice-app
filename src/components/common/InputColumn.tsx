@@ -2,7 +2,7 @@
 import { Input } from "@/components/components/ui/input";
 import { Label } from "@/components/components/ui/label";
 import { cn } from "../lib/utils";
-import { Controller } from "react-hook-form";
+import { Control, Controller, FieldValues } from "react-hook-form";
 
 export function InputColumn({
     className,
@@ -24,7 +24,8 @@ export function InputColumn({
     placeholder?: string;
     inputType?: string;
     name?: string;
-    control?: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    control?: Control<FieldValues, any, FieldValues>;
 }) {
     return (
         <Controller

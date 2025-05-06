@@ -9,7 +9,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/components/ui/select";
-import { Controller } from "react-hook-form";
+import { Control, Controller, FieldValues } from "react-hook-form";
 
 export function SelectColumn({
     title,
@@ -29,12 +29,13 @@ export function SelectColumn({
     placeholder?: string;
     dropdownItems?: { label: string; value: string }[];
     name?: string;
-    control?: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    control?: Control<FieldValues, any, FieldValues>;
 }) {
     return (
         <Controller
             control={control}
-            name={name}
+            name={name!}
             render={({ field: { onChange, value } }) => (
                 <div className={cn("flex items-center mb-3", className)}>
                     <Label

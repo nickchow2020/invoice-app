@@ -14,7 +14,7 @@ import {
     PopoverTrigger,
 } from "@/components/components/ui/popover";
 
-import { Controller } from "react-hook-form";
+import { Control, Controller, FieldValues } from "react-hook-form";
 
 export function CalenderColumn({
     title,
@@ -31,7 +31,8 @@ export function CalenderColumn({
     value?: string;
     placeholder?: string;
     name?: string;
-    control?: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    control?: Control<FieldValues, any, FieldValues>;
 }) {
     return (
         <Controller

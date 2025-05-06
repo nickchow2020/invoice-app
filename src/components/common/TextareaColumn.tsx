@@ -1,7 +1,7 @@
 import { Label } from "@/components/components/ui/label";
 import { cn } from "../lib/utils";
 import { Textarea } from "@/components/components/ui/textarea";
-import { Controller } from "react-hook-form";
+import { Control, Controller, FieldValues } from "react-hook-form";
 
 export function TextareaColumn({
     title,
@@ -18,7 +18,8 @@ export function TextareaColumn({
     title: string;
     value?: string;
     placeholder?: string;
-    control: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    control: Control<FieldValues, any, FieldValues>;
     name: string;
 }) {
     return (
