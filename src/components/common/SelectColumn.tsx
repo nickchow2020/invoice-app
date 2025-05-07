@@ -57,7 +57,7 @@ export function SelectColumn({
                         >
                             <SelectValue placeholder={placeholder} />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-white border border-gray-300 rounded-md shadow-lg">
                             {dropdownItems?.map((item, index) => (
                                 <SelectItem key={index} value={item.value}>
                                     {item.label}
