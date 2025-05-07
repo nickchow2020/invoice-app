@@ -68,7 +68,7 @@ export function CalenderColumn({
                                 )}
                             </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0 bg-white">
+                        <PopoverContent className="w-auto p-0 bg-white border-purple-400 ">
                             <Calendar
                                 mode="single"
                                 selected={value}
