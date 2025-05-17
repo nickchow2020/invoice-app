@@ -1,11 +1,7 @@
 "use client";
 import BasicInfo from "@/components/BasicInfo";
-import Footer from "@/components/Footer";
 import Instruction from "@/components/Instruction";
 import { Invoice, InvoiceDetail } from "@/components/InvoiceDetail";
-import MaintenanceInstructionTable from "@/components/MaintenanceInstructionTable";
-import PersonalInfo from "@/components/PersonalInfo";
-import PricingTable from "@/components/PricingTable";
 import { useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useReactToPrint } from "react-to-print";
@@ -99,12 +95,13 @@ export default function Page() {
                                 className="ml-65"
                             />
                         </section>
-                        <section>{/* <PersonalInfo /> */}</section>
-                        <section className="mb-3">
-                            {/* <h2 className="font-extrabold text-[17px]">
-                                故障说明:
-                            </h2>
-                            <MaintenanceInstructionTable /> */}
+                        <section>
+                            <h1 className="font-chineseSerif text-4xl font-bold text-right my-3 mr-32">
+                                报价单
+                            </h1>
+                        </section>
+                        <section className="font-bold">
+                            <p>价有效期: 2025-08-31 </p>
                         </section>
                         <section className="mb-5">
                             {/* <h2 className="font-extrabold text-[17px]">
