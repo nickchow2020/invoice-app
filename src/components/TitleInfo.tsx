@@ -1,5 +1,5 @@
 "use client";
-import { FormValues } from "@/app/page";
+import { FormValues } from "@/app/maintenance/page";
 import { ColumnDisplay } from "./common/ColumnDisplay";
 import { useFormContext, useWatch } from "react-hook-form";
 

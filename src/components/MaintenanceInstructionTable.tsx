@@ -6,7 +6,7 @@ import {
     TableHead,
     TableRow,
 } from "@/components/components/ui/table";
-import { FormValues } from "@/app/page";
+import { FormValues } from "@/app/maintenance/page";
 import { useFormContext, useWatch } from "react-hook-form";
 import { cn } from "@/utility/helper";
 import { format } from "date-fns";

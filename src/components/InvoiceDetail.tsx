@@ -22,7 +22,7 @@ import {
 import { Button } from "./components/ui/button";
 import { InputColumnRegular } from "./common/InputColumn";
 import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
-import { FormValues } from "@/app/page";
+import { FormValues } from "@/app/maintenance/page";
 import { currencySymbols } from "./lib/constant";
 
 export type Invoice = {

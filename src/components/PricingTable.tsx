@@ -17,7 +17,7 @@ import {
 } from "@/components/components/ui/table";
 
 import { useFormContext, useWatch } from "react-hook-form";
-import { FormValues } from "@/app/page";
+import { FormValues } from "@/app/maintenance/page";
 import { Invoice } from "./InvoiceDetail";
 import {
     booleanOptionsMap,

@@ -1,6 +1,6 @@
 import { useFormContext, useWatch } from "react-hook-form";
 import { ColumnDisplay } from "./common/ColumnDisplay";
-import { FormValues } from "@/app/page";
+import { FormValues } from "@/app/maintenance/page";
 import { format } from "date-fns";
 
 export default function PersonalInfo() {
