@@ -11,8 +11,8 @@ import { useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useReactToPrint } from "react-to-print";
 import { Button } from "@/components/components/ui/button";
-import { Printer, Download, RotateCcw } from "lucide-react";
-
+import { Printer, Download, RotateCcw, House } from "lucide-react";
+import { useRouter } from "next/navigation";
 export type FormValues = {
     quoteNo: string;
     contactName: string;
@@ -35,6 +35,10 @@ export type FormValues = {
 };
 
 export default function Page() {
+    const router = useRouter();
+    const handleOnClickHomePage = () => {
+        router.push("/");
+    };
     const methods = useForm<FormValues>({
         defaultValues: {
             //base info
@@ -108,13 +112,22 @@ export default function Page() {
                         <article className="flex h-fit w-full">
                             <BasicInfo />
                             <Instruction />
-                            <Button
-                                className="h-8 cursor-pointer bg-purple-400 hover:bg-purple-600 hover:text-white font-bold py-2 px-4 mb-5 text-white ml-auto"
-                                onClick={() => methods.reset()}
-                            >
-                                <RotateCcw size={16} />
-                                重置
-                            </Button>
+                            <div className="flex flex-col ml-auto">
+                                <Button
+                                    className="h-8 cursor-pointer bg-purple-400 hover:bg-purple-600 hover:text-white font-bold py-2 px-4 mb-5 text-white ml-auto w-[98px]"
+                                    onClick={() => methods.reset()}
+                                >
+                                    <RotateCcw size={16} />
+                                    重置
+                                </Button>
+                                <Button
+                                    className="h-8 cursor-pointer bg-purple-400 hover:bg-purple-600 hover:text-white font-bold py-2 px-4 mb-5 text-white ml-auto"
+                                    onClick={handleOnClickHomePage}
+                                >
+                                    <House size={16} />
+                                    回首页
+                                </Button>
+                            </div>
                         </article>
                         <article>
                             <InvoiceDetail />
