@@ -6,12 +6,12 @@ import { Invoice, InvoiceDetail } from "@/components/InvoiceDetail";
 import MaintenanceInstructionTable from "@/components/MaintenanceInstructionTable";
 import PersonalInfo from "@/components/PersonalInfo";
 import PricingTable from "@/components/PricingTable";
-import { TitleInfo } from "@/components/TitleInfo";
 import { useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useReactToPrint } from "react-to-print";
 import { Button } from "@/components/components/ui/button";
 import { Printer, Download, RotateCcw } from "lucide-react";
+import { HeaderContactInfo } from "@/components/HeaderContact";
 
 export type FormValues = {
     quoteNo: string;
@@ -82,27 +82,37 @@ export default function Page() {
                 </Button>
                 <main className="flex">
                     <div className="w-[210mm] px-6 py-4" ref={contentRef}>
-                        <section className="flex flex-col items-center justify-center">
-                            <TitleInfo />
+                        <section className="flex items-center justify-start">
+                            <HeaderContactInfo
+                                title="From"
+                                companyName="苏州慕翰电子科技有限公司"
+                                contactName={"宗培芳"}
+                                email={"peifang.zong@esamber.com"}
+                                phone={"18676737950"}
+                            />
+                            <HeaderContactInfo
+                                title="To"
+                                companyName="苏州万杨电子科技有限公司"
+                                contactName={"洪永"}
+                                email={"wanyang1271@163.com"}
+                                phone={""}
+                                className="ml-65"
+                            />
                         </section>
-                        <section>
-                            <PersonalInfo />
-                        </section>
+                        <section>{/* <PersonalInfo /> */}</section>
                         <section className="mb-3">
-                            <h2 className="font-extrabold text-[17px]">
+                            {/* <h2 className="font-extrabold text-[17px]">
                                 故障说明:
                             </h2>
-                            <MaintenanceInstructionTable />
+                            <MaintenanceInstructionTable /> */}
                         </section>
                         <section className="mb-5">
-                            <h2 className="font-extrabold text-[17px]">
+                            {/* <h2 className="font-extrabold text-[17px]">
                                 报价说明:
                             </h2>
-                            <PricingTable />
+                            <PricingTable /> */}
                         </section>
-                        <section>
-                            <Footer />
-                        </section>
+                        <section>{/* <Footer /> */}</section>
                     </div>
                     <div className="px-10 py-4 border-l-2 border-l-purple-600 min-w-[210mm]">
                         <article className="flex h-fit w-full">
