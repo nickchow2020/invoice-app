@@ -7,7 +7,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useReactToPrint } from "react-to-print";
 import { Button } from "@/components/components/ui/button";
 import { Printer, Download, RotateCcw } from "lucide-react";
-import { HeaderContactInfo } from "@/components/HeaderContact";
+import { Column, HeaderContactInfo } from "@/components/HeaderContact";
 
 export type FormValues = {
     quoteNo: string;
@@ -96,18 +96,46 @@ export default function Page() {
                             />
                         </section>
                         <section>
-                            <h1 className="font-chineseSerif text-4xl font-bold text-right my-3 mr-32">
+                            <p className="text-4xl text-right my-3 mr-32 font-extrabold">
                                 报价单
-                            </h1>
+                            </p>
                         </section>
-                        <section className="font-bold">
-                            <p>价有效期: 2025-08-31 </p>
+                        <section className="text-[13px] font-extrabold">
+                            <p>价有效期: 2025-08-31</p>
                         </section>
-                        <section className="mb-5">
-                            {/* <h2 className="font-extrabold text-[17px]">
-                                报价说明:
-                            </h2>
-                            <PricingTable /> */}
+                        <section className="h-[500px] w-full border border-gray-300">
+                            <div className="ml-10 mt-2">
+                                <Column
+                                    name="报价编号"
+                                    value="ESA20250503010"
+                                    noLink
+                                    titleClassName="font-extrabold text-[13px]"
+                                />
+                                <Column
+                                    name="付款方式"
+                                    value="电汇,100%预付"
+                                    noLink
+                                    titleClassName="font-extrabold text-[13px]"
+                                />
+                                <Column
+                                    name="交货周期"
+                                    value="3-4周交货"
+                                    noLink
+                                    titleClassName="font-extrabold text-[13px]"
+                                />
+                                <Column
+                                    name="交货地址"
+                                    value="扬州"
+                                    noLink
+                                    titleClassName="font-extrabold text-[13px]"
+                                />
+                                <Column
+                                    name="保固期限"
+                                    value="1年"
+                                    noLink
+                                    titleClassName="font-extrabold text-[13px]"
+                                />
+                            </div>
                         </section>
                         <section>{/* <Footer /> */}</section>
                     </div>

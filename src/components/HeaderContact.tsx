@@ -1,15 +1,21 @@
 import { cn } from "@/utility/helper";
 
-function Column({
+export function Column({
     name,
     value,
     link,
     className = "",
+    titleClassName = "",
+    valueClassName = "",
+    noLink,
 }: {
     name: string;
     value: string;
     link?: boolean;
     className?: string;
+    titleClassName?: string;
+    valueClassName?: string;
+    noLink?: boolean;
 }) {
     return (
         <div
@@ -18,9 +24,14 @@ function Column({
                 className
             )}
         >
-            <p className="">{name}</p>
+            <p className={cn("", titleClassName)}>{name}</p>
             <span className="font-bold mx-1">:</span>
-            <p className={cn("", { " text-blue-800 underline": link })}>
+            <p
+                className={cn("", valueClassName, {
+                    " text-blue-800 underline": link,
+                    " text-blue-800": noLink,
+                })}
+            >
                 {value}
             </p>
         </div>
