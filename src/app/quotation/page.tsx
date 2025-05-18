@@ -8,6 +8,7 @@ import { useReactToPrint } from "react-to-print";
 import { Button } from "@/components/components/ui/button";
 import { Printer, Download, RotateCcw } from "lucide-react";
 import { Column, HeaderContactInfo } from "@/components/HeaderContact";
+import { NestedTable } from "@/components/NestedTable";
 
 export type FormValues = {
     quoteNo: string;
@@ -100,7 +101,7 @@ export default function Page() {
                                 报价单
                             </p>
                         </section>
-                        <section className="text-[13px] font-extrabold">
+                        <section className="text-[13px] font-extrabold text-black">
                             <p>价有效期: 2025-08-31</p>
                         </section>
                         <section className="h-[500px] w-full border border-gray-300">
@@ -135,6 +136,9 @@ export default function Page() {
                                     noLink
                                     titleClassName="font-extrabold text-[13px]"
                                 />
+                            </div>
+                            <div>
+                                <NestedTable />
                             </div>
                         </section>
                         <section>{/* <Footer /> */}</section>
