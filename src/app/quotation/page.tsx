@@ -8,7 +8,47 @@ import { useReactToPrint } from "react-to-print";
 import { Button } from "@/components/components/ui/button";
 import { Printer, Download, RotateCcw } from "lucide-react";
 import { Column, HeaderContactInfo } from "@/components/HeaderContact";
-import { NestedTable } from "@/components/NestedTable";
+import {
+    createColumnHelper,
+    flexRender,
+    getCoreRowModel,
+    useReactTable,
+} from "@tanstack/react-table";
+
+export type TableRow = {
+    itemNumber: string;
+    isParent: boolean;
+    itemCode: string;
+    description: string;
+    quantity: string;
+    unitPrice?: string;
+    totalPrice?: string;
+    notes?: string[];
+    subRows?: TableRow[];
+};
+
+function transformProductToTableRow(product: ProductPackage): TableRow {
+    return {
+        id: product.itemCode,
+        isParent: true,
+        itemCode: product.itemCode,
+        description: `${product.title} ${product.subtitle ?? ""}`,
+        quantity: product.quantity,
+        unitPrice: product.unitPrice,
+        totalPrice: product.totalPrice,
+        notes: product.notes,
+        subRows: product.items.map((item) => ({
+            id: item.itemCode,
+            isParent: false,
+            itemCode: item.itemCode,
+            description: item.description,
+            quantity: item.quantity,
+            unitPrice: item.unitPrice,
+            totalPrice: item.totalPrice,
+            notes: item.notes,
+        })),
+    };
+}
 
 export type FormValues = {
     quoteNo: string;
@@ -64,6 +104,31 @@ export default function Page() {
 
     const contentRef = useRef<HTMLDivElement>(null);
     const reactToPrintFn = useReactToPrint({ contentRef });
+
+    const columnHelper = createColumnHelper<TableRow>();
+
+    const columns = [
+        columnHelper.accessor("itemCode", {
+            header: "项目",
+            cell: (info) => info.getValue(),
+        }),
+        columnHelper.accessor("description", {
+            header: "产品描述",
+            cell: (info) => info.getValue(),
+        }),
+        columnHelper.accessor("quantity", {
+            header: "数量",
+            cell: (info) => info.getValue(),
+        }),
+        columnHelper.accessor("unitPrice", {
+            header: "单价",
+            cell: (info) => info.getValue() ?? "",
+        }),
+        columnHelper.accessor("totalPrice", {
+            header: "总额",
+            cell: (info) => info.getValue() ?? "",
+        }),
+    ];
     return (
         <FormProvider {...methods}>
             <div>
@@ -101,7 +166,7 @@ export default function Page() {
                                 报价单
                             </p>
                         </section>
-                        <section className="text-[13px] font-extrabold text-black">
+                        <section className="text-[13px] font-extrabold">
                             <p>价有效期: 2025-08-31</p>
                         </section>
                         <section className="h-[500px] w-full border border-gray-300">
@@ -137,9 +202,7 @@ export default function Page() {
                                     titleClassName="font-extrabold text-[13px]"
                                 />
                             </div>
-                            <div>
-                                <NestedTable />
-                            </div>
+                            <div></div>
                         </section>
                         <section>{/* <Footer /> */}</section>
                     </div>
