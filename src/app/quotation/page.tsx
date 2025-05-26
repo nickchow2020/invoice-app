@@ -1,65 +1,98 @@
 "use client";
-import BasicInfo from "@/components/BasicInfo";
 import Instruction from "@/components/Instruction";
-import { Invoice, InvoiceDetail } from "@/components/InvoiceDetail";
+import { InvoiceDetail } from "@/components/InvoiceDetail";
 import { useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useReactToPrint } from "react-to-print";
 import { Button } from "@/components/components/ui/button";
 import { Printer, Download, RotateCcw } from "lucide-react";
-import { Column, HeaderContactInfo } from "@/components/HeaderContact";
+import { Column } from "@/components/HeaderContact";
 import { NestedTable } from "@/components/NestedTable";
 import Image from "next/image";
+import From from "@/components/From";
+import FromTo from "@/components/FromTo";
+import To from "@/components/To";
 
 export type FormValues = {
-    quoteNo: string;
-    contactName: string;
-    name: string;
-    email: string;
-    phone: string;
-    clientName: string;
-    service: string;
-    currencyType: string;
-    serviceDate: string;
-    quoteID: string;
-    clientOrganization: string;
-    deviceName: string;
-    deviceModel: string;
-    userFeedback: string;
-    repairServices: string;
-    deliveryTime: string;
-    fctTax: string;
-    pricingInstructions: Invoice[];
+    // From info
+    from: {
+        companyName: string;
+        name: string;
+        phone: string;
+        email: string;
+    };
+    to: {
+        companyName: string;
+        name: string;
+        phone: string;
+        email: string;
+    };
+    // quoteNo: string;
+    // contactName: string;
+    // phone: string;
+    // clientName: string;
+    // service: string;
+    // currencyType: string;
+    // serviceDate: string;
+
+    // Instruction info
+    // quoteID: string;
+    // clientOrganization: string;
+    // deviceName: string;
+    // deviceModel: string;
+    // userFeedback: string;
+    // repairServices: string;
+    // deliveryTime: string;
+
+    // Tax info
+    // fctTax?: boolean;
+
+    // Pricing info
+    // pricingInstructions?: Invoice[];
 };
 
 export default function Page() {
     const methods = useForm<FormValues>({
         defaultValues: {
             //base info
-            quoteNo: "",
-            contactName: "宗培芳",
-            name: "宗培芳",
-            email: "peifang.zong@esamber.com",
-            phone: "18676737950",
-            clientName: "",
-            service: "",
-            currencyType: "人民币",
-            serviceDate: "",
 
-            //instruction info
-            quoteID: "",
-            clientOrganization: "",
-            deviceName: "",
-            deviceModel: "",
-            userFeedback: "",
-            repairServices: "",
-            deliveryTime: "",
+            from: {
+                companyName: "苏州慕翰电子科技有限公司",
+                name: "宗培芳",
+                phone: "18676737950",
+                email: "peifang.zong@esamber.com",
+            },
 
-            //tax info
-            fctTax: "false",
+            to: {
+                companyName: "",
+                name: "",
+                phone: "",
+                email: "",
+            },
 
-            //pricing info
-            pricingInstructions: [],
+            // quoteNo: "",
+            // contactName: "宗培芳",
+
+            // phone: "18676737950",
+            // clientName: "",
+            // service: "",
+            // currencyType: "人民币",
+            // serviceDate: "",
+
+            // //instruction info
+            // quoteID: "",
+            // clientOrganization: "",
+            // deviceName: "",
+            // deviceModel: "",
+            // userFeedback: "",
+            // repairServices: "",
+            // deliveryTime: "",
+
+            // //tax info
+            // fctTax: "false",
+
+            // //pricing info
+            // pricingInstructions: [],
         },
     });
 
@@ -82,21 +115,7 @@ export default function Page() {
                     <div className="w-[210mm] px-6 py-4 flex" ref={contentRef}>
                         <section className="w-[210mm]">
                             <section className="flex items-center justify-start">
-                                <HeaderContactInfo
-                                    title="From"
-                                    companyName="苏州慕翰电子科技有限公司"
-                                    contactName={"宗培芳"}
-                                    email={"peifang.zong@esamber.com"}
-                                    phone={"18676737950"}
-                                />
-                                <HeaderContactInfo
-                                    title="To"
-                                    companyName="苏州万杨电子科技有限公司"
-                                    contactName={"洪永"}
-                                    email={"wanyang1271@163.com"}
-                                    phone={""}
-                                    className="ml-65"
-                                />
+                                <FromTo />
                             </section>
                             <section className="flex justify-end my-4 mr-26">
                                 <Image
@@ -223,7 +242,8 @@ export default function Page() {
                     </div>
                     <div className="px-10 py-4 border-l-2 border-l-purple-600 min-w-[210mm]">
                         <article className="flex h-fit w-full">
-                            <BasicInfo />
+                            <From />
+                            <To />
                             <Instruction />
                             <Button
                                 className="h-8 cursor-pointer bg-purple-400 hover:bg-purple-600 hover:text-white font-bold py-2 px-4 mb-5 text-white ml-auto"
