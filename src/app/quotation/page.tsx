@@ -104,44 +104,108 @@ export default function Page() {
                         <section className="text-[13px] font-extrabold text-black">
                             <p>价有效期: 2025-08-31</p>
                         </section>
-                        <section className="h-[500px] w-full border border-gray-300">
-                            <div className="ml-10 mt-2">
+                        <section className="w-full border border-gray-300">
+                            <section className="ml-10 mt-2">
                                 <Column
                                     name="报价编号"
                                     value="ESA20250503010"
                                     noLink
-                                    titleClassName="font-extrabold text-[13px]"
+                                    titleClassName="text-[13px]"
                                 />
                                 <Column
                                     name="付款方式"
                                     value="电汇,100%预付"
                                     noLink
-                                    titleClassName="font-extrabold text-[13px]"
+                                    titleClassName="text-[13px]"
                                 />
                                 <Column
                                     name="交货周期"
                                     value="3-4周交货"
                                     noLink
-                                    titleClassName="font-extrabold text-[13px]"
+                                    titleClassName="text-[13px]"
                                 />
                                 <Column
                                     name="交货地址"
                                     value="扬州"
                                     noLink
-                                    titleClassName="font-extrabold text-[13px]"
+                                    titleClassName="text-[13px]"
                                 />
                                 <Column
                                     name="保固期限"
                                     value="1年"
                                     noLink
-                                    titleClassName="font-extrabold text-[13px]"
+                                    titleClassName="text-[13px]"
                                 />
-                            </div>
-                            <div>
+                            </section>
+                            <section>
                                 <NestedTable />
-                            </div>
+                            </section>
+                            <section className="flex justify-between items-start px-10 py-4  border-gray-300 mt-7">
+                                <div className="flex">
+                                    <h3 className="text-[13px] font-extrabold text-black ">
+                                        测试项目：
+                                    </h3>
+                                    <ul className="list-disc ml-4">
+                                        <li className="text-[13px]  text-black">
+                                            功能测试
+                                        </li>
+                                        <li className="text-[13px]  text-black">
+                                            性能测试
+                                        </li>
+                                        <li className="text-[13px]  text-black">
+                                            安全性测试
+                                        </li>
+                                        <li className="text-[13px]  text-black">
+                                            兼容性测试
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="flex w-60">
+                                    <h3 className="text-[13px] font-extrabold text-black whitespace-nowrap">
+                                        应用领域：
+                                    </h3>
+                                    <p className="text-[13px] text-black ml-2">
+                                        ESAMBER测温仪,采用先
+                                        进的PT32K数据采集器，
+                                        仪器主要应用于回流/波
+                                        峰焊接、太阳能烧结、胶
+                                        水固化、炉窖、食品加工、
+                                        喷涂、汽车热处理、金属
+                                        热处理、陶瓷烧制以及特
+                                        殊的水蒸气热导焊制造等
+                                        高温行业，作为温度数据 的采集分析。
+                                    </p>
+                                </div>
+                            </section>
+                            <section className="flex justify-around items-center border-t border-gray-300 px-8 py-1">
+                                <div className="text-[13px] font-extrabold text-black">
+                                    总额优惠价 (含13%增值税)
+                                </div>
+                                <div className="text-[13px] font-extrabold text-black">
+                                    100,000.00 RMB
+                                </div>
+                            </section>
                         </section>
-                        <section>{/* <Footer /> */}</section>
+                        <section>
+                            <p className="text-[13px]  text-black mt-1">
+                                此报价单为企业商业机密，未经允许禁止对外传播！
+                            </p>
+                            <section className="flex justify-between items-center mt-6">
+                                <Column
+                                    name="报价日期"
+                                    value="2025/05/03"
+                                    titleClassName="text-[13px]"
+                                    valueClassName="text-[13px]"
+                                />
+                                <Column
+                                    name="报价人"
+                                    value="宗培芳"
+                                    titleClassName="text-[13px]"
+                                    valueClassName="text-[13px]"
+                                />
+                                <div>客户确认：_____________________</div>
+                            </section>
+                        </section>
                     </div>
                     <div className="px-10 py-4 border-l-2 border-l-purple-600 min-w-[210mm]">
                         <article className="flex h-fit w-full">
