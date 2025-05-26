@@ -9,6 +9,7 @@ import { Button } from "@/components/components/ui/button";
 import { Printer, Download, RotateCcw } from "lucide-react";
 import { Column, HeaderContactInfo } from "@/components/HeaderContact";
 import { NestedTable } from "@/components/NestedTable";
+import Image from "next/image";
 
 export type FormValues = {
     quoteNo: string;
@@ -96,10 +97,13 @@ export default function Page() {
                                 className="ml-65"
                             />
                         </section>
-                        <section>
-                            <p className="text-4xl text-right my-3 mr-32 font-extrabold">
-                                报价单
-                            </p>
+                        <section className="flex justify-end my-4 mr-33">
+                            <Image
+                                src="/images/quotation.png"
+                                width={110}
+                                height={1}
+                                alt="Picture of the quotation logo"
+                            />
                         </section>
                         <section className="text-[13px] font-extrabold text-black">
                             <p>价有效期: 2025-08-31</p>
