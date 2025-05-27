@@ -1,5 +1,4 @@
 "use client";
-import { InvoiceDetail } from "@/components/InvoiceDetail";
 import { useRef } from "react";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useReactToPrint } from "react-to-print";
@@ -14,6 +13,7 @@ import To from "@/components/ToInput";
 import QuotationInfoInput from "@/components/QuotationBaseInfoInput";
 import { format } from "date-fns";
 import QuotationBaseInfo from "@/components/QuotationBaseInfo";
+import { QuotationInvoiceDetailInput } from "@/components/QuotationInvoiceDetailInput";
 
 export type subProductionItem = {
     itemCode?: string; // 产品编码
@@ -86,65 +86,65 @@ export default function Page() {
             },
 
             productionsInfo: [
-                {
-                    itemCode: "1",
-                    description: "ESAMBER R6T 炉温测试仪",
-                    quantity: "1",
-                    unitPrice: "32,000.00",
-                    totalPrice: "32,000.00",
-                    items: [
-                        {
-                            itemCode: "1.0",
-                            description: "R6T 炉温测试仪",
-                            quantity: "1",
-                        },
-                        {
-                            itemCode: "1.1",
-                            description: "热电偶+插头（K type）",
-                            quantity: "6",
-                        },
-                        {
-                            itemCode: "1.2",
-                            description: "USB 数据线",
-                            quantity: "1",
-                        },
-                        {
-                            itemCode: "1.3",
-                            description: "隔热箱（200℃50 分钟）",
-                            quantity: "1",
-                        },
-                        {
-                            itemCode: "1.4",
-                            description: "EPRs 软件光盘",
-                            quantity: "1",
-                        },
-                        {
-                            itemCode: "1.5",
-                            description: "隔热手套",
-                            quantity: "1",
-                        },
-                        {
-                            itemCode: "1.6",
-                            description: "用户手册",
-                            quantity: "1",
-                        },
-                        {
-                            itemCode: "1.7",
-                            description: "产品合格证书",
-                            quantity: "1",
-                        },
-                        {
-                            itemCode: "1.8",
-                            description: "产品保修单",
-                            quantity: "1",
-                        },
-                        {
-                            itemCode: "1.9",
-                            description: "仪器箱",
-                            quantity: "1",
-                        },
-                    ],
-                },
+                // {
+                //     itemCode: "1",
+                //     description: "ESAMBER R6T 炉温测试仪",
+                //     quantity: "1",
+                //     unitPrice: "32,000.00",
+                //     totalPrice: "32,000.00",
+                //     items: [
+                //         {
+                //             itemCode: "1.0",
+                //             description: "R6T 炉温测试仪",
+                //             quantity: "1",
+                //         },
+                //         {
+                //             itemCode: "1.1",
+                //             description: "热电偶+插头（K type）",
+                //             quantity: "6",
+                //         },
+                //         {
+                //             itemCode: "1.2",
+                //             description: "USB 数据线",
+                //             quantity: "1",
+                //         },
+                //         {
+                //             itemCode: "1.3",
+                //             description: "隔热箱（200℃50 分钟）",
+                //             quantity: "1",
+                //         },
+                //         {
+                //             itemCode: "1.4",
+                //             description: "EPRs 软件光盘",
+                //             quantity: "1",
+                //         },
+                //         {
+                //             itemCode: "1.5",
+                //             description: "隔热手套",
+                //             quantity: "1",
+                //         },
+                //         {
+                //             itemCode: "1.6",
+                //             description: "用户手册",
+                //             quantity: "1",
+                //         },
+                //         {
+                //             itemCode: "1.7",
+                //             description: "产品合格证书",
+                //             quantity: "1",
+                //         },
+                //         {
+                //             itemCode: "1.8",
+                //             description: "产品保修单",
+                //             quantity: "1",
+                //         },
+                //         {
+                //             itemCode: "1.9",
+                //             description: "仪器箱",
+                //             quantity: "1",
+                //         },
+                //     ],
+                // },
             ],
         },
     });
@@ -291,7 +291,7 @@ export default function Page() {
                             <QuotationInfoInput />
                         </article>
                         <article>
-                            <InvoiceDetail />
+                            <QuotationInvoiceDetailInput />
                         </article>
                     </div>
                 </main>
