@@ -15,6 +15,21 @@ import QuotationInfoInput from "@/components/QuotationBaseInfoInput";
 import { format } from "date-fns";
 import QuotationBaseInfo from "@/components/QuotationBaseInfo";
 
+export type subProductionItem = {
+    itemCode?: string; // 产品编码
+    description?: string; // 产品名称
+    quantity?: string; // 数量
+};
+
+export type ProductionItem = {
+    itemCode?: string; // 产品编码
+    description?: string; // 产品名称
+    quantity?: string; // 数量
+    unitPrice?: string; // 单价
+    totalPrice?: string; // 总价
+    items?: subProductionItem[]; // 子产品列表
+};
+
 export type FormValues = {
     // From info
     from: {
@@ -38,28 +53,8 @@ export type FormValues = {
         deliveryAddress: string; // 交货地址
         warrantyPeriod: string; // 保固期限
     };
-    // quoteNo: string;
-    // contactName: string;
-    // phone: string;
-    // clientName: string;
-    // service: string;
-    // currencyType: string;
-    // serviceDate: string;
 
-    // Instruction info
-    // quoteID: string;
-    // clientOrganization: string;
-    // deviceName: string;
-    // deviceModel: string;
-    // userFeedback: string;
-    // repairServices: string;
-    // deliveryTime: string;
-
-    // Tax info
-    // fctTax?: boolean;
-
-    // Pricing info
-    // pricingInstructions?: Invoice[];
+    productionsInfo?: ProductionItem[];
 };
 
 export default function Page() {
@@ -89,12 +84,73 @@ export default function Page() {
                 deliveryAddress: "", // 交货地址
                 warrantyPeriod: "", // 保固期限
             },
+
+            productionsInfo: [
+                {
+                    itemCode: "1",
+                    description: "ESAMBER R6T 炉温测试仪",
+                    quantity: "1",
+                    unitPrice: "32,000.00",
+                    totalPrice: "32,000.00",
+                    items: [
+                        {
+                            itemCode: "1.0",
+                            description: "R6T 炉温测试仪",
+                            quantity: "1",
+                        },
+                        {
+                            itemCode: "1.1",
+                            description: "热电偶+插头（K type）",
+                            quantity: "6",
+                        },
+                        {
+                            itemCode: "1.2",
+                            description: "USB 数据线",
+                            quantity: "1",
+                        },
+                        {
+                            itemCode: "1.3",
+                            description: "隔热箱（200℃50 分钟）",
+                            quantity: "1",
+                        },
+                        {
+                            itemCode: "1.4",
+                            description: "EPRs 软件光盘",
+                            quantity: "1",
+                        },
+                        {
+                            itemCode: "1.5",
+                            description: "隔热手套",
+                            quantity: "1",
+                        },
+                        {
+                            itemCode: "1.6",
+                            description: "用户手册",
+                            quantity: "1",
+                        },
+                        {
+                            itemCode: "1.7",
+                            description: "产品合格证书",
+                            quantity: "1",
+                        },
+                        {
+                            itemCode: "1.8",
+                            description: "产品保修单",
+                            quantity: "1",
+                        },
+                        {
+                            itemCode: "1.9",
+                            description: "仪器箱",
+                            quantity: "1",
+                        },
+                    ],
+                },
+            ],
         },
     });
 
     const contentRef = useRef<HTMLDivElement>(null);
     const reactToPrintFn = useReactToPrint({ contentRef });
-    // const { control } = useFormContext();
 
     const { baseInfo } = useWatch({
         control: methods.control,

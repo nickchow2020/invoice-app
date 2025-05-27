@@ -9,51 +9,10 @@ import {
 } from "@tanstack/react-table";
 import React from "react";
 import { cn } from "./lib/utils";
+import { useFormContext, useWatch } from "react-hook-form";
+import { FormValues, ProductionItem } from "@/app/quotation/page";
 
-type ProductPackage = {
-    itemCode: string;
-    description: string;
-    quantity: string;
-    unitPrice: string;
-    totalPrice: string;
-    items: {
-        itemCode: string;
-        description: string;
-        quantity: string;
-    }[];
-};
-
-const data: ProductPackage[] = [
-    {
-        itemCode: "1",
-        description: "ESAMBER R6T 炉温测试仪",
-        quantity: "1",
-        unitPrice: "32,000.00",
-        totalPrice: "32,000.00",
-        items: [
-            { itemCode: "1.0", description: "R6T 炉温测试仪", quantity: "1" },
-            {
-                itemCode: "1.1",
-                description: "热电偶+插头（K type）",
-                quantity: "6",
-            },
-            { itemCode: "1.2", description: "USB 数据线", quantity: "1" },
-            {
-                itemCode: "1.3",
-                description: "隔热箱（200℃50 分钟）",
-                quantity: "1",
-            },
-            { itemCode: "1.4", description: "EPRs 软件光盘", quantity: "1" },
-            { itemCode: "1.5", description: "隔热手套", quantity: "1" },
-            { itemCode: "1.6", description: "用户手册", quantity: "1" },
-            { itemCode: "1.7", description: "产品合格证书", quantity: "1" },
-            { itemCode: "1.8", description: "产品保修单", quantity: "1" },
-            { itemCode: "1.9", description: "仪器箱", quantity: "1" },
-        ],
-    },
-];
-
-const columns: ColumnDef<ProductPackage>[] = [
+const columns: ColumnDef<ProductionItem>[] = [
     {
         id: "expander",
         header: () => null,
@@ -73,13 +32,22 @@ const columns: ColumnDef<ProductPackage>[] = [
 ];
 
 export function NestedTable() {
-    const table = useReactTable({
+    const { control } = useFormContext<FormValues>();
+
+    const { productionsInfo } = useWatch({
+        control,
+    });
+
+    const data = productionsInfo ?? [];
+
+    const table = useReactTable<ProductionItem>({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
         getExpandedRowModel: getExpandedRowModel(),
         getRowCanExpand: () => true,
     });
+
     return (
         <table className="table-fixed w-full border-collapse">
             <thead>
@@ -152,7 +120,7 @@ export function NestedTable() {
                         </tr>
 
                         {row.getIsExpanded() &&
-                            row.original.items.map((item, idx) => (
+                            row.original.items?.map((item, idx) => (
                                 <tr key={`${row.id}-${idx}`}>
                                     {table
                                         .getVisibleFlatColumns()
