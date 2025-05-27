@@ -1,17 +1,19 @@
 "use client";
-import Instruction from "@/components/Instruction";
 import { InvoiceDetail } from "@/components/InvoiceDetail";
 import { useRef } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useReactToPrint } from "react-to-print";
 import { Button } from "@/components/components/ui/button";
 import { Printer, Download, RotateCcw } from "lucide-react";
 import { Column } from "@/components/HeaderContact";
 import { NestedTable } from "@/components/NestedTable";
 import Image from "next/image";
-import From from "@/components/From";
+import From from "@/components/FromInput";
 import FromTo from "@/components/FromTo";
-import To from "@/components/To";
+import To from "@/components/ToInput";
+import QuotationInfoInput from "@/components/QuotationBaseInfoInput";
+import { format } from "date-fns";
+import QuotationBaseInfo from "@/components/QuotationBaseInfo";
 
 export type FormValues = {
     // From info
@@ -26,6 +28,15 @@ export type FormValues = {
         name: string;
         phone: string;
         email: string;
+    };
+
+    baseInfo: {
+        expirationDate: string; // 价有效期
+        quoteNo: string; // 报价编号
+        paymentMethod: string; // 付款方式
+        deliveryTime: string; // 交货周期
+        deliveryAddress: string; // 交货地址
+        warrantyPeriod: string; // 保固期限
     };
     // quoteNo: string;
     // contactName: string;
@@ -70,6 +81,15 @@ export default function Page() {
                 email: "",
             },
 
+            baseInfo: {
+                expirationDate: "", // 报价有效期
+                quoteNo: "", // 报价编号
+                paymentMethod: "", // 付款方式
+                deliveryTime: "", // 交货周期
+                deliveryAddress: "", // 交货地址
+                warrantyPeriod: "", // 保固期限
+            },
+
             // quoteNo: "",
             // contactName: "宗培芳",
 
@@ -98,6 +118,12 @@ export default function Page() {
 
     const contentRef = useRef<HTMLDivElement>(null);
     const reactToPrintFn = useReactToPrint({ contentRef });
+    // const { control } = useFormContext();
+
+    const { baseInfo } = useWatch({
+        control: methods.control,
+    });
+
     return (
         <FormProvider {...methods}>
             <div>
@@ -126,41 +152,18 @@ export default function Page() {
                                 />
                             </section>
                             <section className="text-[13px] font-extrabold text-black">
-                                <p>价有效期: 2025-08-31</p>
+                                <p>
+                                    报价有效期:{" "}
+                                    {baseInfo?.expirationDate
+                                        ? format(
+                                              baseInfo?.expirationDate,
+                                              "yyyy-MM-dd"
+                                          )
+                                        : ""}
+                                </p>
                             </section>
                             <section className="w-full border border-gray-300">
-                                <section className="ml-10 mt-2">
-                                    <Column
-                                        name="报价编号"
-                                        value="ESA20250503010"
-                                        noLink
-                                        titleClassName="text-[13px]"
-                                    />
-                                    <Column
-                                        name="付款方式"
-                                        value="电汇,100%预付"
-                                        noLink
-                                        titleClassName="text-[13px]"
-                                    />
-                                    <Column
-                                        name="交货周期"
-                                        value="3-4周交货"
-                                        noLink
-                                        titleClassName="text-[13px]"
-                                    />
-                                    <Column
-                                        name="交货地址"
-                                        value="扬州"
-                                        noLink
-                                        titleClassName="text-[13px]"
-                                    />
-                                    <Column
-                                        name="保固期限"
-                                        value="1年"
-                                        noLink
-                                        titleClassName="text-[13px]"
-                                    />
-                                </section>
+                                <QuotationBaseInfo />
                                 <section>
                                     <NestedTable />
                                 </section>
@@ -244,7 +247,6 @@ export default function Page() {
                         <article className="flex h-fit w-full">
                             <From />
                             <To />
-                            <Instruction />
                             <Button
                                 className="h-8 cursor-pointer bg-purple-400 hover:bg-purple-600 hover:text-white font-bold py-2 px-4 mb-5 text-white ml-auto"
                                 onClick={() => methods.reset()}
@@ -252,6 +254,9 @@ export default function Page() {
                                 <RotateCcw size={16} />
                                 重置
                             </Button>
+                        </article>
+                        <article>
+                            <QuotationInfoInput />
                         </article>
                         <article>
                             <InvoiceDetail />
