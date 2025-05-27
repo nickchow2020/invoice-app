@@ -89,30 +89,6 @@ export default function Page() {
                 deliveryAddress: "", // 交货地址
                 warrantyPeriod: "", // 保固期限
             },
-
-            // quoteNo: "",
-            // contactName: "宗培芳",
-
-            // phone: "18676737950",
-            // clientName: "",
-            // service: "",
-            // currencyType: "人民币",
-            // serviceDate: "",
-
-            // //instruction info
-            // quoteID: "",
-            // clientOrganization: "",
-            // deviceName: "",
-            // deviceModel: "",
-            // userFeedback: "",
-            // repairServices: "",
-            // deliveryTime: "",
-
-            // //tax info
-            // fctTax: "false",
-
-            // //pricing info
-            // pricingInstructions: [],
         },
     });
 
